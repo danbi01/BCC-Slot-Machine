@@ -73,22 +73,22 @@ public class ScoreButton : MonoBehaviour
         yield return new WaitForSeconds(0.00001f);
         if (GameManager.score == 100) {
             rank = 1;
-            CandleLight.rectTransform.anchoredPosition = new Vector2(184f, 111f);
-            LightEffect.rectTransform.anchoredPosition = new Vector2(184f, 73f);
+            CandleLight.rectTransform.anchoredPosition = new Vector2(138f, 131f); //138 131
+            LightEffect.rectTransform.anchoredPosition = new Vector2(138f, 103f);
         }
         else if(GameManager.score > 85) { // 95, 90
             rank = 2;
-            CandleLight.rectTransform.anchoredPosition = new Vector2(447.7f, 15.1f);
-            LightEffect.rectTransform.anchoredPosition = new Vector2(447.7f, -22.9f);
+            CandleLight.rectTransform.anchoredPosition = new Vector2(401.7f, 8.4f);
+            LightEffect.rectTransform.anchoredPosition = new Vector2(401.7f, -19.96f);
         }
         else if(GameManager.score > 75) { // 85, 80, 75
             rank = 3;
-            CandleLight.rectTransform.anchoredPosition = new Vector2(675f, -81.6f);
-            LightEffect.rectTransform.anchoredPosition = new Vector2(675f, -119.6f);
+            CandleLight.rectTransform.anchoredPosition = new Vector2(624.3f, -67.8f);//624.3, 67.8
+            LightEffect.rectTransform.anchoredPosition = new Vector2(624.3f, -100f);
         } else {                         // 70 ... 0
             rank = 4;
-            CandleLight.rectTransform.anchoredPosition = new Vector2(853f, -167f);
-            LightEffect.rectTransform.anchoredPosition = new Vector2(853f, -205f);
+            CandleLight.rectTransform.anchoredPosition = new Vector2(825.7f, -166f); // 166.2
+            LightEffect.rectTransform.anchoredPosition = new Vector2(825.7f, -194f);
             cakeTopper.SetActive(true);
         }
         // 점수 출력
