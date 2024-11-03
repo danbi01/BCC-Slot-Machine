@@ -111,19 +111,20 @@ public class NeedleMove : MonoBehaviour
         //Needle의 위치를 계산된 현재위치로 처리
         transform.localPosition = new Vector3(currentPositionX, currentPositionY, 0);
 
-        // 3초동안 안 고르면 자동선택
-        deltaCount += Time.deltaTime;
-        Debug.Log(deltaCount);
-        if(!stopCalled && deltaCount>3.0) {
-            stopCalled = true;
-            NeedleStopHandler();
+        if(Settings.timeLimit) {
+            // 3초동안 안 고르면 자동선택
+            deltaCount += Time.deltaTime;
+            Debug.Log(deltaCount);
+            if(!stopCalled && deltaCount>3.0) {
+                stopCalled = true;
+                NeedleStopHandler();
+            }
         }
     }
 
     // 레버를 클릭하면 실행되는 메소드
     // 바늘 멈춤
     // 1초동안 멈췄다가 1초 지나면 다시 움직임 (coroutine, IEnumerator)
-    // 점수 계산도 함
     // 몇 라운드인지 셈
     public void NeedleStopHandler()
     {

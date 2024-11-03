@@ -33,15 +33,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void ScoreHandler()
-    {
-        score = 0;
-        for(int i=0; i<resultArr.Length; i++) {
-            score += int.Parse(resultArr[i].Substring(2));
-            Debug.Log("Round "+i+" score: " + int.Parse(resultArr[i].Substring(2)));
-        }
-    }
-
     public static IEnumerator SetTimeOutMoveOnToNextRound(float sec)
     {
         float waitPartsMovingSec = sec - sec/3;
@@ -60,6 +51,14 @@ public class GameManager : MonoBehaviour
         // 5라운드 끝나면 결과화면으로 가기
          if(NeedleMove.roundCount==5) {
             SceneManager.LoadScene("Score Scene");
+        }
+    }
+    public static void ScoreHandler()
+    {
+        score = 0;
+        for(int i=0; i<resultArr.Length; i++) {
+            score += int.Parse(resultArr[i].Substring(2));
+            Debug.Log("Round "+i+" score: " + int.Parse(resultArr[i].Substring(2)));
         }
     }
 
@@ -84,18 +83,8 @@ public class GameManager : MonoBehaviour
                 case 4: partPosition = new Vector3(-3.71f, -2.66f, 0);
                     partScale = new Vector3(0.6309f, 0.6309f, 0.6309f); break;
             }
-            GameObject part=Instantiate(prefab, partPosition, Quaternion.identity) as GameObject;
+            GameObject part = Instantiate(prefab, partPosition, Quaternion.identity) as GameObject;
             part.transform.localScale = partScale;
         }
-    }
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
     }
 }
