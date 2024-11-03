@@ -55,10 +55,21 @@ public class GameManager : MonoBehaviour
     }
     public static void ScoreHandler()
     {
+        SetDefaultResult();
         score = 0;
         for(int i=0; i<resultArr.Length; i++) {
             score += int.Parse(resultArr[i].Substring(2));
             Debug.Log("Round "+i+" score: " + int.Parse(resultArr[i].Substring(2)));
+        }
+    }
+
+    // play하지 않은 상태에서도 Score Scene에서 캐릭터 볼 수 있게 기본값 설정
+    public static void SetDefaultResult() {
+        Debug.Log("resultArr[0] == "+resultArr[0]);
+        if(resultArr[0] == null) {
+            for(int i=0; i<GameManager.resultArr.Length; i++) {
+                GameManager.resultArr[i] = i.ToString()+"-20";
+            }
         }
     }
 
