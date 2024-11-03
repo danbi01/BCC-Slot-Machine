@@ -15,7 +15,6 @@ public class NeedleMove : MonoBehaviour
     public static bool isMachineStopped = false;
     public static bool isPartsMoving = false;
     int currentRoomsScore = 0;
-    // public static int score = 0;
     public static int roundCount = 0;
     float partsPositionX = 0;
     float partsPositionY = 4.0f;
@@ -130,7 +129,7 @@ public class NeedleMove : MonoBehaviour
     {
         isMachineStopped = true;
 
-        // 몇 번째 칸에 멈췄는지 판별하고 점수 매기기
+        // 몇 번째 칸에 멈췄는지 판별하고 resultArr에 파츠 이름 저장하기
         float entireRoom = rightMax - leftMax;
         float[] rooms = new float[5];
         for(int i=0; i<rooms.Length; i++) {
@@ -139,16 +138,15 @@ public class NeedleMove : MonoBehaviour
             {
                 Debug.Log(i+1 + " 번째 칸에 멈춤");
                 currentRoomsScore = score2D[roundCount, i];
+                GameManager.resultArr[roundCount] = roundCount.ToString()+"-"+currentRoomsScore.ToString();
    
                 // 선택된 파츠 아래 쿠션에 띄우기
-                Object prefab = Resources.Load("Prefabs/"+roundCount.ToString()+"-"+currentRoomsScore.ToString());
-                GameManager.resultArr[roundCount] = roundCount.ToString()+"-"+currentRoomsScore.ToString();
+                Object prefab = Resources.Load("Prefabs/"+GameManager.resultArr[roundCount]);
                 Debug.Log(GameManager.resultArr[roundCount]);
                 Instantiate(prefab);
                 break;
             }
         }
-        GameManager.ScoreHandler(currentRoomsScore);
         roundCount++;
         Debug.Log("Round " + roundCount);
         Debug.Log("_______________");

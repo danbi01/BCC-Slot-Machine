@@ -7,8 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static int score = 0;
-    public static String[] resultArr = new string[5];
+    public static int score;
+    public static String[] resultArr = new String[5];
 
     // 리스트 내부 요소의 순서를 섞는 메소드
     public static List<int> Shuffle(List<int> values)
@@ -33,11 +33,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public static void ScoreHandler(int currentRoomsScore)
+    public static void ScoreHandler()
     {
-        score += currentRoomsScore;
-        Debug.Log("이번 라운드 점수: " + currentRoomsScore);
-        Debug.Log("총점: " + score);
+        score = 0;
+        for(int i=0; i<resultArr.Length; i++) {
+            score += int.Parse(resultArr[i].Substring(2));
+            Debug.Log("Round "+i+" score: " + int.Parse(resultArr[i].Substring(2)));
+        }
     }
 
     public static IEnumerator SetTimeOutMoveOnToNextRound(float sec)

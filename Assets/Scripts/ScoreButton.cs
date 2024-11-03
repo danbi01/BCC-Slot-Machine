@@ -33,6 +33,7 @@ public class ScoreButton : MonoBehaviour
         isScoreButtonClicked = true;
         keySound.Play(0);
         Debug.Log("Click ScoreButton");
+        GameManager.ScoreHandler();
         StartCoroutine(SetTimeOutMoveKey());
     }
     
@@ -117,11 +118,17 @@ public class ScoreButton : MonoBehaviour
         lightEffect.SetActive(false);
 
         targetPosition = new Vector3(-1, transform.position.y, 0);
+
+        // play하지 않은 상태에서도 Score Scene에서 캐릭터 볼 수 있게 기본값 설정
+        for(int i=0; i<GameManager.resultArr.Length; i++) {
+            // resultArr[] == {"0-20", "1-20", "2-20", "3-20", "4-20"} 
+            GameManager.resultArr[i] = i.ToString()+"-20";
+        }
     }
 
     void Update()
     {
         if (isScoreButtonClicked)
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 70.0f * Time.deltaTime);        
+            transform.position = Vector3.MoveTowards(transform.position, targetPosition, 70.0f * Time.deltaTime);
     }
 }
