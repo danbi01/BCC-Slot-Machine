@@ -130,5 +130,9 @@ public class ScoreButton : MonoBehaviour
     {
         if (isScoreButtonClicked)
             transform.position = Vector3.MoveTowards(transform.position, targetPosition, 70.0f * Time.deltaTime);
+        if (Input.GetKeyDown(KeyCode.Space)) {
+            Debug.Log("스페이스 키 누름");
+            SceneManager.LoadScene("Start Scene");
+        }
     }
 }
