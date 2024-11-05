@@ -12,6 +12,8 @@ public class Ribbon : MonoBehaviour
     public GameObject lightEffect;
     public GameObject cakeTopper;
     AudioSource envelopeSound;
+    AudioSource checkSound;
+
 
     public static bool isRibbonClicked;
 
@@ -21,6 +23,7 @@ public class Ribbon : MonoBehaviour
     {
         Debug.Log("Enter ribbon");
         GetComponent<RectTransform>().localScale = new Vector2(1.02f, 1.02f);
+        checkSound.Play(0);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
@@ -84,7 +87,9 @@ public class Ribbon : MonoBehaviour
     {
         // 투명부분 무시
         GetComponent<Image>().alphaHitTestMinimumThreshold = 0.001f;
-        envelopeSound = GetComponent<AudioSource>();
+        AudioSource[] aSources = GetComponents<AudioSource>();
+        envelopeSound = aSources[0];
+        checkSound = aSources[1];
 
         isRibbonClicked = false;
 
