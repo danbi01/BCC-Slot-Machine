@@ -9,17 +9,20 @@ public class Ribbon : MonoBehaviour
     public GameObject candle;
     public GameObject lightEffect;
     public GameObject cakeTopper;
+    AudioSource envelopeSound;
+
     public static bool isRibbonClicked;
 
     int rank = 0;
 
-    public void RibbonCickHandler()
+    public void RibbonClickHandler()
     {
         isRibbonClicked = true;
         Debug.Log("isRibbonClicked: "+isRibbonClicked);
         Envelope.anim.Play("Envelope_open");
+        envelopeSound.Play(0);
 
-        // ¸®º» Å¬¸¯ÇßÀ» ¶§ ÃĞºÒ, È¿°ú ½ÇÇà
+        // ë¦¬ë³¸ í´ë¦­í–ˆì„ ë•Œ ì´›ë¶ˆ, íš¨ê³¼ ì‹¤í–‰
         StartCoroutine(setTimeOutClickRibbon());
 
         GetComponent<Image>().enabled= false;
@@ -27,7 +30,7 @@ public class Ribbon : MonoBehaviour
 
     IEnumerator setTimeOutClickRibbon()
     {
-        yield return new WaitForSeconds(0.5f); // ÆíÁöÁö ³Ö°í ¼öÁ¤ÇÏ±â
+        yield return new WaitForSeconds(0.5f); // TODO: í¸ì§€ì§€ ë„£ì€ í›„ì— ìˆ˜ì •í•˜ê¸°
         candle.SetActive(true);
         lightEffect.SetActive(true);
         Debug.Log("Play candleLight");
@@ -66,8 +69,9 @@ public class Ribbon : MonoBehaviour
 
     void Start()
     {
-        // Åõ¸í¹è°æ ¹«½Ã
+        // íˆ¬ëª…ë¶€ë¶„ ë¬´ì‹œ
         GetComponent<Image>().alphaHitTestMinimumThreshold = 0.001f;
+        envelopeSound = GetComponent<AudioSource>();
 
         isRibbonClicked = false;
 
