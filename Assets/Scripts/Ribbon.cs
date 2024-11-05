@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Ribbon : MonoBehaviour
+    , IPointerEnterHandler
+    , IPointerExitHandler
 {
     public GameObject candle;
     public GameObject lightEffect;
@@ -13,7 +15,18 @@ public class Ribbon : MonoBehaviour
 
     int rank = 0;
 
-    public void RibbonCickHandler()
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        Debug.Log("Enter ribbon");
+        GetComponent<RectTransform>().localScale = new Vector2(1.02f, 1.02f);
+    }
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Debug.Log("Exit ribbon");
+        GetComponent<RectTransform>().localScale = new Vector2(1f, 1f);
+    }
+
+    public void RibbonClickHandler()
     {
         isRibbonClicked = true;
         Debug.Log("isRibbonClicked: "+isRibbonClicked);
