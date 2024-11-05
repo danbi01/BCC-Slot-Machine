@@ -61,7 +61,7 @@ public class ScoreButton : MonoBehaviour
         door.SetActive(false);
         background.SetActive(false);
         GameManager.AddSelectedParts();
-        Envelope.anim.Play("Envelope_open");
+        //Envelope.anim.Play("Envelope_open");
 
         // 촛불 켜짐
         yield return new WaitForSeconds(1f);
