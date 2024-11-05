@@ -707,9 +707,6 @@ MonoBehaviour:
   background: {fileID: 1361185449}
   door: {fileID: 1186922535}
   halfDoor: {fileID: 963076697}
-  candle: {fileID: 1961897162}
-  cakeTopper: {fileID: 1067891304}
-  lightEffect: {fileID: 749821020}
 --- !u!95 &687422952
 Animator:
   serializedVersion: 5
@@ -1814,6 +1811,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893dc46417c393d4e85d014da6ddef94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  candle: {fileID: 1961897162}
+  lightEffect: {fileID: 749821020}
+  cakeTopper: {fileID: 1067891304}
 --- !u!1 &1162252886
 GameObject:
   m_ObjectHideFlags: 0
