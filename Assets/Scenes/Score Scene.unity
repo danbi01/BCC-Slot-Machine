@@ -1894,8 +1894,8 @@ MonoBehaviour:
   candleLight: {fileID: 1961897162}
   cakeTopper: {fileID: 1067891304}
   letterPaper: {fileID: 1044356698}
-  envelopeTop: {fileID: 1974282901}
   envelope: {fileID: 535265740}
+  envelopeTop: {fileID: 1974282901}
   cakes:
   - {fileID: 35807048}
   - {fileID: 1035389992}
@@ -2656,7 +2656,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9cf5b116a91184696a9bc8e44a3d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  clickSoundBig: {fileID: 0}
 --- !u!114 &1585542311
 MonoBehaviour:
   m_ObjectHideFlags: 0

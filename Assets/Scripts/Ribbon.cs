@@ -69,7 +69,7 @@ public class Ribbon : MonoBehaviour
         yield return new WaitForSeconds(0.2f); // 편지지 내려가기 기다렸다가, *촛불, 불꽃효과 등장* //TODO: 점수 등장
         isLetterPaperMoved = false;
         isScoreDisplayed = true;
-        candle.SetActive(true);
+        candleLight.SetActive(true);
         lightEffect.SetActive(true);
         foreach(GameObject cake in cakes)  // 케이크 흑백처리
             cake.GetComponent<Image>().material = mat;
