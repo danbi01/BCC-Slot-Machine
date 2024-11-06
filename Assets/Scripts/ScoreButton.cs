@@ -12,7 +12,6 @@ public class ScoreButton : MonoBehaviour
 {
     public Vector3 targetPosition;
 
-    Animator anim;
     AudioSource keySound;
     AudioSource doorSound;
     AudioSource lightSwitchSound;
@@ -42,6 +41,7 @@ public class ScoreButton : MonoBehaviour
         Debug.Log("Click ScoreButton");
         GameManager.ScoreHandler();
         StartCoroutine(SetTimeOutMoveKey());
+        GetComponent<Button>().enabled = false;
     }
     
     IEnumerator SetTimeOutMoveKey()
@@ -49,14 +49,14 @@ public class ScoreButton : MonoBehaviour
         // 열쇠 회전
         yield return new WaitForSeconds(1.5f);
         isScoreButtonClicked = false;
-        anim.Play("keyRotation");
+        GetComponent<Animator>().Play("keyRotation");
         Debug.Log("Play keyRotation");
 
         // 문 열림
         yield return new WaitForSeconds(1.0f);
         transform.position = new Vector3(-1300, 0, 0); //TODO: enable/disable
         halfDoor.SetActive(false);
-        Door.anim.Play("door_open");
+        door.GetComponent<Animator>().Play("door_open");
         doorSound.Play(0);
         Debug.Log("Play doorOpen");
         
@@ -73,7 +73,6 @@ public class ScoreButton : MonoBehaviour
     {
         // 투명배경 무시
         GetComponent<Image>().alphaHitTestMinimumThreshold = 0.001f;
-        anim = GetComponent<Animator>();
 
         // var audioSources = GetComponent<AudioSource>();
         AudioSource[] aSources = GetComponents<AudioSource>();

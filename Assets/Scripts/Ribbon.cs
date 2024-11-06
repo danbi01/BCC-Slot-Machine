@@ -8,15 +8,18 @@ public class Ribbon : MonoBehaviour
     , IPointerEnterHandler
     , IPointerExitHandler
 {
-    public GameObject candle;
+    public Material mat;
     public GameObject lightEffect;
+    public GameObject candleLight;
     public GameObject cakeTopper;
     public GameObject letterPaper;
+    public GameObject envelope;
     public GameObject envelopeTop;
+    public GameObject[] cakes = new GameObject[4];
     AudioSource envelopeSound;
     AudioSource checkSound;
-
-
+    RectTransform rectTransform;
+    
     public static bool isRibbonClicked;
     public static bool isEnvelopeOpened;
     public static bool isLetterPaperMoved;
@@ -27,32 +30,32 @@ public class Ribbon : MonoBehaviour
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("Enter ribbon");
-        GetComponent<RectTransform>().localScale = new Vector2(1.02f, 1.02f);
+        rectTransform.localScale = new Vector2(1.02f, 1.02f);
         checkSound.Play(0);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("Exit ribbon");
-        GetComponent<RectTransform>().localScale = new Vector2(1f, 1f);
+        rectTransform.localScale = new Vector2(1f, 1f);
     }
 
     public void RibbonClickHandler()
     {
         isRibbonClicked = true;
         Debug.Log("isRibbonClicked: "+isRibbonClicked);
-        Envelope.anim.Play("Envelope_open");
+        envelope.GetComponent<Animator>().Play("Envelope_open");
         envelopeSound.Play(0);
 
         // 리본 클릭했을 때 촛불, 효과 실행
         StartCoroutine(setTimeOutClickRibbon());
 
-        GetComponent<Image>().enabled= false;
+        GetComponent<Image>().enabled = false;
+        GetComponent<Button>().enabled = false;
     }
 
     IEnumerator setTimeOutClickRibbon()
     {
         yield return new WaitForSeconds(0.5f); // 열리기 기다림
-        Debug.Log(letterPaper.transform.position);
         isEnvelopeOpened = true;
 
         yield return new WaitForSeconds(0.2f); // 편지지 올라가기 기다렸다가, *잠깐 멈추기(멈추자마자 envelopeTop 눈 끄기)*
@@ -68,38 +71,35 @@ public class Ribbon : MonoBehaviour
         isScoreDisplayed = true;
         candle.SetActive(true);
         lightEffect.SetActive(true);
+        foreach(GameObject cake in cakes)  // 케이크 흑백처리
+            cake.GetComponent<Image>().material = mat;
         Debug.Log("Play candleLight");
-        try
+        if (GameManager.score == 100)
         {
-            if (GameManager.score == 100)
-            {
-                rank = 1;
-                CandleLight.rectTransform.anchoredPosition = new Vector2(138f, 131f);
-                LightEffect.rectTransform.anchoredPosition = new Vector2(138f, 103f);
-            }
-            else if (GameManager.score > 85)
-            {
-                rank = 2;
-                CandleLight.rectTransform.anchoredPosition = new Vector2(401.7f, 8.4f);
-                LightEffect.rectTransform.anchoredPosition = new Vector2(401.7f, -19.96f);
-            }
-            else if (GameManager.score > 75)
-            {
-                rank = 3;
-                CandleLight.rectTransform.anchoredPosition = new Vector2(624.3f, -67.8f);
-                LightEffect.rectTransform.anchoredPosition = new Vector2(624.3f, -100f);
-            }
-            else
-            {
-                rank = 4;
-                CandleLight.rectTransform.anchoredPosition = new Vector2(825.7f, -166f);
-                LightEffect.rectTransform.anchoredPosition = new Vector2(825.7f, -194f);
-                cakeTopper.SetActive(true);
-            }
-        } catch
-        {
-            StartCoroutine(setTimeOutClickRibbon());
+            rank = 1;
+            candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(138f, 131f);
+            lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(138f, 103f);
         }
+        else if (GameManager.score > 85)
+        {
+            rank = 2;
+            candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(401.7f, 8.4f);
+            lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(401.7f, -19.96f);
+        }
+        else if (GameManager.score > 75)
+        {
+            rank = 3;
+            candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(624.3f, -67.8f);
+            lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(624.3f, -100f);
+        }
+        else
+        {
+            rank = 4;
+            candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(825.7f, -166f);
+            lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(825.7f, -194f);
+            cakeTopper.SetActive(true);
+        }
+        cakes[rank-1].GetComponent<Image>().material= null;
     }
 
     void Start()
@@ -107,6 +107,8 @@ public class Ribbon : MonoBehaviour
         // 투명부분 무시
         GetComponent<Image>().alphaHitTestMinimumThreshold = 0.001f;
         AudioSource[] aSources = GetComponents<AudioSource>();
+        rectTransform= GetComponent<RectTransform>();
+
         envelopeSound = aSources[0];
         checkSound = aSources[1];
 
@@ -114,9 +116,9 @@ public class Ribbon : MonoBehaviour
         isEnvelopeOpened = false;
         isScoreDisplayed = false;
 
-        candle.SetActive(false);
+        candleLight.SetActive(true);
         cakeTopper.SetActive(false);
-        lightEffect.SetActive(false);
+        lightEffect.SetActive(true);
     }
 
     void Update() {

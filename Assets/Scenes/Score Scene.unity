@@ -1889,11 +1889,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 893dc46417c393d4e85d014da6ddef94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mat: {fileID: 2100000, guid: 46f131bb7b6e84f98b7dc0281a1a0040, type: 2}
   candle: {fileID: 1961897162}
   lightEffect: {fileID: 749821020}
   cakeTopper: {fileID: 1067891304}
   letterPaper: {fileID: 1044356698}
   envelopeTop: {fileID: 1974282901}
+  envelope: {fileID: 535265740}
+  cakes:
+  - {fileID: 35807048}
+  - {fileID: 1035389992}
+  - {fileID: 1162252886}
+  - {fileID: 433453440}
 --- !u!82 &1124917674
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2662,6 +2669,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9cf5b116a91184696a9bc8e44a3d17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clickSoundBig: {fileID: 0}
 --- !u!114 &1585542311
 MonoBehaviour:
   m_ObjectHideFlags: 0
