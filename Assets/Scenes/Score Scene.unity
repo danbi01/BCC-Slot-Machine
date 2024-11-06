@@ -1118,8 +1118,9 @@ RectTransform:
   - {fileID: 1585542309}
   - {fileID: 1381051839}
   - {fileID: 1049133002}
-  - {fileID: 1974282902}
   - {fileID: 535265741}
+  - {fileID: 1044356699}
+  - {fileID: 1974282902}
   - {fileID: 1124917669}
   - {fileID: 1361185450}
   - {fileID: 1186922536}
@@ -1516,6 +1517,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1035389992}
   m_CullTransparentMesh: 1
+--- !u!1 &1044356698
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1044356699}
+  - component: {fileID: 1044356701}
+  - component: {fileID: 1044356700}
+  m_Layer: 5
+  m_Name: letterPaper
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1044356699
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044356698}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 738679321}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 1920, y: 1080}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1044356700
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044356698}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 128cf1ff140514c0f83724d53fc4dd99, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1044356701
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1044356698}
+  m_CullTransparentMesh: 1
 --- !u!1 &1049133001
 GameObject:
   m_ObjectHideFlags: 0
@@ -1817,6 +1893,8 @@ MonoBehaviour:
   lightEffect: {fileID: 749821020}
   candleLight: {fileID: 1961897162}
   cakeTopper: {fileID: 1067891304}
+  letterPaper: {fileID: 1044356698}
+  envelopeTop: {fileID: 1974282901}
   envelope: {fileID: 535265740}
   cakes:
   - {fileID: 35807048}
@@ -2883,7 +2961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1974282902
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2923,7 +3001,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b4dfec38675584180895801205c9a9c3, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 53bf4b44d84db4834bea95ae0bf5a3a9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

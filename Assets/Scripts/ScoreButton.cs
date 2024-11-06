@@ -54,7 +54,7 @@ public class ScoreButton : MonoBehaviour
 
         // 문 열림
         yield return new WaitForSeconds(1.0f);
-        transform.position = new Vector3(-1300, 0, 0);
+        transform.position = new Vector3(-1300, 0, 0); //TODO: enable/disable
         halfDoor.SetActive(false);
         door.GetComponent<Animator>().Play("door_open");
         doorSound.Play(0);
