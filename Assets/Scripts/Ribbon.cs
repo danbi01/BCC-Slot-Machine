@@ -8,13 +8,14 @@ public class Ribbon : MonoBehaviour
     , IPointerEnterHandler
     , IPointerExitHandler
 {
+    public Material mat;
     public GameObject candle;
     public GameObject lightEffect;
     public GameObject cakeTopper;
+    public GameObject[] cakes = new GameObject[4];
     AudioSource envelopeSound;
     AudioSource checkSound;
-
-
+    
     public static bool isRibbonClicked;
 
     int rank = 0;
@@ -47,40 +48,35 @@ public class Ribbon : MonoBehaviour
     IEnumerator setTimeOutClickRibbon()
     {
         yield return new WaitForSeconds(0.5f); // TODO: 편지지 넣은 후에 수정하기
-        candle.SetActive(true);
-        lightEffect.SetActive(true);
+        foreach(GameObject cake in cakes)  // 케이크 흑백처리
+            cake.GetComponent<Image>().material = mat;
         Debug.Log("Play candleLight");
-        try
+        if (GameManager.score == 100)
         {
-            if (GameManager.score == 100)
-            {
-                rank = 1;
-                CandleLight.rectTransform.anchoredPosition = new Vector2(138f, 131f);
-                LightEffect.rectTransform.anchoredPosition = new Vector2(138f, 103f);
-            }
-            else if (GameManager.score > 85)
-            {
-                rank = 2;
-                CandleLight.rectTransform.anchoredPosition = new Vector2(401.7f, 8.4f);
-                LightEffect.rectTransform.anchoredPosition = new Vector2(401.7f, -19.96f);
-            }
-            else if (GameManager.score > 75)
-            {
-                rank = 3;
-                CandleLight.rectTransform.anchoredPosition = new Vector2(624.3f, -67.8f);
-                LightEffect.rectTransform.anchoredPosition = new Vector2(624.3f, -100f);
-            }
-            else
-            {
-                rank = 4;
-                CandleLight.rectTransform.anchoredPosition = new Vector2(825.7f, -166f);
-                LightEffect.rectTransform.anchoredPosition = new Vector2(825.7f, -194f);
-                cakeTopper.SetActive(true);
-            }
-        } catch
-        {
-            StartCoroutine(setTimeOutClickRibbon());
+            rank = 1;
+            CandleLight.rectTransform.anchoredPosition = new Vector2(138f, 131f);
+            LightEffect.rectTransform.anchoredPosition = new Vector2(138f, 103f);
         }
+        else if (GameManager.score > 85)
+        {
+            rank = 2;
+            CandleLight.rectTransform.anchoredPosition = new Vector2(401.7f, 8.4f);
+            LightEffect.rectTransform.anchoredPosition = new Vector2(401.7f, -19.96f);
+        }
+        else if (GameManager.score > 75)
+        {
+            rank = 3;
+            CandleLight.rectTransform.anchoredPosition = new Vector2(624.3f, -67.8f);
+            LightEffect.rectTransform.anchoredPosition = new Vector2(624.3f, -100f);
+        }
+        else
+        {
+            rank = 4;
+            CandleLight.rectTransform.anchoredPosition = new Vector2(825.7f, -166f);
+            LightEffect.rectTransform.anchoredPosition = new Vector2(825.7f, -194f);
+            cakeTopper.SetActive(true);
+        }
+        cakes[rank-1].GetComponent<Image>().material= null;
     }
 
     void Start()
@@ -93,9 +89,9 @@ public class Ribbon : MonoBehaviour
 
         isRibbonClicked = false;
 
-        candle.SetActive(false);
+        candle.SetActive(true);
         cakeTopper.SetActive(false);
-        lightEffect.SetActive(false);
+        lightEffect.SetActive(true);
     }
 
 }
