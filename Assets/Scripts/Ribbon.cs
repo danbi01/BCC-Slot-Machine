@@ -9,12 +9,14 @@ public class Ribbon : MonoBehaviour
     , IPointerExitHandler
 {
     public Material mat;
-    public GameObject candle;
     public GameObject lightEffect;
+    public GameObject candleLight;
     public GameObject cakeTopper;
+    public GameObject envelope;
     public GameObject[] cakes = new GameObject[4];
     AudioSource envelopeSound;
     AudioSource checkSound;
+    RectTransform rectTransform;
     
     public static bool isRibbonClicked;
 
@@ -23,26 +25,27 @@ public class Ribbon : MonoBehaviour
     public void OnPointerEnter(PointerEventData eventData)
     {
         Debug.Log("Enter ribbon");
-        GetComponent<RectTransform>().localScale = new Vector2(1.02f, 1.02f);
+        rectTransform.localScale = new Vector2(1.02f, 1.02f);
         checkSound.Play(0);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("Exit ribbon");
-        GetComponent<RectTransform>().localScale = new Vector2(1f, 1f);
+        rectTransform.localScale = new Vector2(1f, 1f);
     }
 
     public void RibbonClickHandler()
     {
         isRibbonClicked = true;
         Debug.Log("isRibbonClicked: "+isRibbonClicked);
-        Envelope.anim.Play("Envelope_open");
+        envelope.GetComponent<Animator>().Play("Envelope_open");
         envelopeSound.Play(0);
 
         // 리본 클릭했을 때 촛불, 효과 실행
         StartCoroutine(setTimeOutClickRibbon());
 
-        GetComponent<Image>().enabled= false;
+        GetComponent<Image>().enabled = false;
+        GetComponent<Button>().enabled = false;
     }
 
     IEnumerator setTimeOutClickRibbon()
@@ -54,26 +57,26 @@ public class Ribbon : MonoBehaviour
         if (GameManager.score == 100)
         {
             rank = 1;
-            CandleLight.rectTransform.anchoredPosition = new Vector2(138f, 131f);
-            LightEffect.rectTransform.anchoredPosition = new Vector2(138f, 103f);
+            candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(138f, 131f);
+            lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(138f, 103f);
         }
         else if (GameManager.score > 85)
         {
             rank = 2;
-            CandleLight.rectTransform.anchoredPosition = new Vector2(401.7f, 8.4f);
-            LightEffect.rectTransform.anchoredPosition = new Vector2(401.7f, -19.96f);
+            candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(401.7f, 8.4f);
+            lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(401.7f, -19.96f);
         }
         else if (GameManager.score > 75)
         {
             rank = 3;
-            CandleLight.rectTransform.anchoredPosition = new Vector2(624.3f, -67.8f);
-            LightEffect.rectTransform.anchoredPosition = new Vector2(624.3f, -100f);
+            candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(624.3f, -67.8f);
+            lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(624.3f, -100f);
         }
         else
         {
             rank = 4;
-            CandleLight.rectTransform.anchoredPosition = new Vector2(825.7f, -166f);
-            LightEffect.rectTransform.anchoredPosition = new Vector2(825.7f, -194f);
+            candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(825.7f, -166f);
+            lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(825.7f, -194f);
             cakeTopper.SetActive(true);
         }
         cakes[rank-1].GetComponent<Image>().material= null;
@@ -84,12 +87,14 @@ public class Ribbon : MonoBehaviour
         // 투명부분 무시
         GetComponent<Image>().alphaHitTestMinimumThreshold = 0.001f;
         AudioSource[] aSources = GetComponents<AudioSource>();
+        rectTransform= GetComponent<RectTransform>();
+
         envelopeSound = aSources[0];
         checkSound = aSources[1];
 
         isRibbonClicked = false;
 
-        candle.SetActive(true);
+        candleLight.SetActive(true);
         cakeTopper.SetActive(false);
         lightEffect.SetActive(true);
     }

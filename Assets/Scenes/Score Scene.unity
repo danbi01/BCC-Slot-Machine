@@ -1817,6 +1817,7 @@ MonoBehaviour:
   candle: {fileID: 1961897162}
   lightEffect: {fileID: 749821020}
   cakeTopper: {fileID: 1067891304}
+  envelope: {fileID: 535265740}
   cakes:
   - {fileID: 35807048}
   - {fileID: 1035389992}
