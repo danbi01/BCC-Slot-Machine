@@ -11,11 +11,16 @@ public class Ribbon : MonoBehaviour
     public GameObject candle;
     public GameObject lightEffect;
     public GameObject cakeTopper;
+    public GameObject letterPaper;
+    public GameObject envelopeTop;
     AudioSource envelopeSound;
     AudioSource checkSound;
 
 
     public static bool isRibbonClicked;
+    public static bool isEnvelopeOpened;
+    public static bool isLetterPaperMoved;
+    public static bool isScoreDisplayed;
 
     int rank = 0;
 
@@ -46,7 +51,21 @@ public class Ribbon : MonoBehaviour
 
     IEnumerator setTimeOutClickRibbon()
     {
-        yield return new WaitForSeconds(0.5f); // TODO: 편지지 넣은 후에 수정하기
+        yield return new WaitForSeconds(0.5f); // 열리기 기다림
+        Debug.Log(letterPaper.transform.position);
+        isEnvelopeOpened = true;
+
+        yield return new WaitForSeconds(0.2f); // 편지지 올라가기 기다렸다가, *잠깐 멈추기(멈추자마자 envelopeTop 눈 끄기)*
+        isEnvelopeOpened = false;
+        envelopeTop.GetComponent<Image>().enabled = false;
+
+
+        yield return new WaitForSeconds(0.2f); // 편지지 올라가고 잠깐 멈췄다가, *내려가기*
+        isLetterPaperMoved = true;
+
+        yield return new WaitForSeconds(0.2f); // 편지지 내려가기 기다렸다가, *촛불, 불꽃효과 등장* //TODO: 점수 등장
+        isLetterPaperMoved = false;
+        isScoreDisplayed = true;
         candle.SetActive(true);
         lightEffect.SetActive(true);
         Debug.Log("Play candleLight");
@@ -92,10 +111,24 @@ public class Ribbon : MonoBehaviour
         checkSound = aSources[1];
 
         isRibbonClicked = false;
+        isEnvelopeOpened = false;
+        isScoreDisplayed = false;
 
         candle.SetActive(false);
         cakeTopper.SetActive(false);
         lightEffect.SetActive(false);
+    }
+
+    void Update() {
+        if (!isScoreDisplayed) { // 편지지 모션 두 번 실행 방지
+            if(isEnvelopeOpened) {
+                letterPaper.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
+            }
+            if(isLetterPaperMoved) {
+                letterPaper.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
+            }
+        }
+        
     }
 
 }
