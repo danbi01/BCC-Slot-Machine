@@ -43,7 +43,7 @@ public class Ribbon : MonoBehaviour
     {
         isRibbonClicked = true;
         Debug.Log("isRibbonClicked: "+isRibbonClicked);
-        envelope.GetComponent<Animator>().Play("Envelope_open");
+        envelope.GetComponent<Animator>().Play("envelope_open");
         envelopeSound.Play(0);
 
         // 리본 클릭했을 때 촛불, 효과 실행
