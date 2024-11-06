@@ -52,6 +52,9 @@ TagManager:
   - name: back
     uniqueID: 2029835307
     locked: 0
+  - name: arm
+    uniqueID: 1954482129
+    locked: 0
   - name: face
     uniqueID: 3430742369
     locked: 0
