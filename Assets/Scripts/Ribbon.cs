@@ -13,8 +13,9 @@ public class Ribbon : MonoBehaviour
     public GameObject candleLight;
     public GameObject cakeTopper;
     public GameObject letterPaper;
-    public GameObject envelope;
+    public GameObject envelopeTopBase;
     public GameObject envelopeTop;
+    public GameObject envelopeBody;
     public GameObject[] cakes = new GameObject[4];
     AudioSource envelopeSound;
     AudioSource checkSound;
@@ -43,7 +44,7 @@ public class Ribbon : MonoBehaviour
     {
         isRibbonClicked = true;
         Debug.Log("isRibbonClicked: "+isRibbonClicked);
-        envelope.GetComponent<Animator>().Play("envelope_open");
+        envelopeTop.GetComponent<Animator>().Play("envelope_top_open");
         envelopeSound.Play(0);
 
         // 리본 클릭했을 때 촛불, 효과 실행
@@ -55,12 +56,14 @@ public class Ribbon : MonoBehaviour
 
     IEnumerator setTimeOutClickRibbon()
     {
-        yield return new WaitForSeconds(0.5f); // 열리기 기다림
+        yield return new WaitForSeconds(0.850f); // 열리기 기다림
         isEnvelopeOpened = true;
-
-        yield return new WaitForSeconds(0.2f); // 편지지 올라가기 기다렸다가, *잠깐 멈추기(멈추자마자 envelopeTop 눈 끄기)*
-        isEnvelopeOpened = false;
+        envelopeTopBase.GetComponent<Image>().enabled = true;
         envelopeTop.GetComponent<Image>().enabled = false;
+
+        yield return new WaitForSeconds(0.2f); // 편지지 올라가기 기다렸다가, *잠깐 멈추기(멈추자마자 envelopeBody 눈 끄기)*
+        isEnvelopeOpened = false;
+        envelopeBody.GetComponent<Image>().enabled = false;
 
 
         yield return new WaitForSeconds(0.2f); // 편지지 올라가고 잠깐 멈췄다가, *내려가기*
@@ -119,6 +122,7 @@ public class Ribbon : MonoBehaviour
         candleLight.SetActive(true);
         cakeTopper.SetActive(false);
         lightEffect.SetActive(true);
+        envelopeTopBase.GetComponent<Image>().enabled = false;
     }
 
     void Update() {
