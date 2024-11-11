@@ -28,7 +28,8 @@ public class Ribbon : MonoBehaviour
     public static bool isLetterPaperMoved;
     public static bool isScoreDisplayed;
 
-    public byte scoreTextColorAlpha = 0;
+    byte scoreTextColorAlpha = 0;
+    public byte scoreTextColorAlphaVelocity = 5;
 
     int rank = 0;
 
@@ -137,14 +138,13 @@ public class Ribbon : MonoBehaviour
                 letterPaper.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
                 scoreText.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
             }
-            if(isLetterPaperMoved) {
-                letterPaper.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
-                scoreText.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
-                if(scoreTextColorAlpha<=255) {
-                    scoreTextColorAlpha += 3;
-                    scoreText.faceColor = new Color32(176, 112, 140, scoreTextColorAlpha);
-                }
-            }
+            if(!isLetterPaperMoved) return;
+            letterPaper.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
+            scoreText.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
+            if(!(scoreTextColorAlpha<=255 -scoreTextColorAlphaVelocity)) return;
+            scoreTextColorAlpha += scoreTextColorAlphaVelocity;
+            scoreText.faceColor = new Color32(176, 112, 140, scoreTextColorAlpha);
+
         }
         
     }
