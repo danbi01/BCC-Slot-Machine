@@ -55,7 +55,7 @@ public class ScoreButton : MonoBehaviour
         // 문 열림
         yield return new WaitForSeconds(1.0f);
         transform.position = new Vector3(-1300, 0, 0); //TODO: enable/disable
-        halfDoor.SetActive(false);
+        halfDoor.GetComponent<Image>().enabled = false;
         door.GetComponent<Animator>().Play("door_open");
         doorSound.Play(0);
         Debug.Log("Play doorOpen");
@@ -64,8 +64,8 @@ public class ScoreButton : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         lightSwitchSound.Play(0);
         shalalaSound.Play(0);
-        door.SetActive(false);
-        background.SetActive(false);
+        door.GetComponent<Image>().enabled = false;
+        background.GetComponent<Image>().enabled = false;
         GameManager.AddSelectedParts();
     }
 
@@ -81,10 +81,10 @@ public class ScoreButton : MonoBehaviour
         shalalaSound = aSources[2];
         doorSound = door.GetComponent<AudioSource>();
 
-        background.SetActive(true);
-        door.SetActive(true);
-        halfDoor.SetActive(true);
-        gameObject.SetActive(true);
+        background.GetComponent<Image>().enabled = true;
+        door.GetComponent<Image>().enabled = true;
+        halfDoor.GetComponent<Image>().enabled = true;
+        gameObject.GetComponent<Image>().enabled = true;
 
         targetPosition = new Vector3(-1, transform.position.y, 0);
     }

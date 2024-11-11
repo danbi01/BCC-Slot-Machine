@@ -25,13 +25,15 @@ public class StartButton : MonoBehaviour
     }
 
     IEnumerator Bomb() {
-        cherryBombBurn.SetActive(true);
+        cherryBombBurn.GetComponent<Image>().enabled = true;
         CherryBombBurnAnimation.Play("CherryBombBurnAnimation");
         cherryBombBurnSound.Play();
+
         yield return new WaitForSeconds(2f);
-        cherryBomb.SetActive(true);
+        cherryBomb.GetComponent<Image>().enabled = true;
         CherryBombAnimation.Play("CherryBombAnimation");
         cherryBombSound.Play();
+
         yield return new WaitForSeconds(1.125f);
         SceneManager.LoadScene("Play Scene");
     }
@@ -52,6 +54,10 @@ public class StartButton : MonoBehaviour
     {
         // 투명부분 무시
         GetComponent<Image>().alphaHitTestMinimumThreshold = 0.001f;
+
+        cherryBombBurn.GetComponent<Image>().enabled = false;
+        cherryBomb.GetComponent<Image>().enabled = false;
+
         AudioSource[] aSources = GetComponents<AudioSource>();
         cherryBombBurnSound = aSources[0];
         cherryBombSound = aSources[1];
