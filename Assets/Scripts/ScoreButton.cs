@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class ScoreButton : MonoBehaviour
     , IPointerEnterHandler
@@ -20,6 +21,8 @@ public class ScoreButton : MonoBehaviour
     public GameObject background;
     public GameObject door;
     public GameObject halfDoor;
+     public TMP_Text scoreText;
+
     bool isScoreButtonClicked = false;
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -40,6 +43,7 @@ public class ScoreButton : MonoBehaviour
         keySound.Play(0);
         Debug.Log("Click ScoreButton");
         GameManager.ScoreHandler();
+        scoreText.text = GameManager.score.ToString(); //TODO: 위치 조정
         StartCoroutine(SetTimeOutMoveKey());
         GetComponent<Button>().enabled = false;
     }

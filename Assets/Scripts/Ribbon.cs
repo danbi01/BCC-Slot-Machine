@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
 
 public class Ribbon : MonoBehaviour
     , IPointerEnterHandler
@@ -12,10 +13,11 @@ public class Ribbon : MonoBehaviour
     public GameObject lightEffect;
     public GameObject candleLight;
     public GameObject cakeTopper;
-    public GameObject letterPaper;
     public GameObject envelopeTopBase;
-    public GameObject envelopeTop;
     public GameObject envelopeBody;
+    public GameObject envelopeTop;
+    public GameObject letterPaper;
+    public TMP_Text scoreText;
     public GameObject[] cakes = new GameObject[4];
     AudioSource envelopeSound;
     AudioSource checkSound;
@@ -25,6 +27,8 @@ public class Ribbon : MonoBehaviour
     public static bool isEnvelopeOpened;
     public static bool isLetterPaperMoved;
     public static bool isScoreDisplayed;
+
+    public byte scoreTextColorAlpha = 0;
 
     int rank = 0;
 
@@ -123,15 +127,23 @@ public class Ribbon : MonoBehaviour
         cakeTopper.SetActive(false);
         lightEffect.SetActive(true);
         envelopeTopBase.GetComponent<Image>().enabled = false;
+
+        scoreText.faceColor = new Color32(176, 112, 140, 0);
     }
 
     void Update() {
         if (!isScoreDisplayed) { // 편지지 모션 두 번 실행 방지
             if(isEnvelopeOpened) {
                 letterPaper.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
+                scoreText.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
             }
             if(isLetterPaperMoved) {
                 letterPaper.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
+                scoreText.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
+                if(scoreTextColorAlpha<=255) {
+                    scoreTextColorAlpha += 3;
+                    scoreText.faceColor = new Color32(176, 112, 140, scoreTextColorAlpha);
+                }
             }
         }
         
