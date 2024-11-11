@@ -76,8 +76,8 @@ public class Ribbon : MonoBehaviour
         yield return new WaitForSeconds(0.2f); // 편지지 내려가기 기다렸다가, *촛불, 불꽃효과 등장* //TODO: 점수 등장
         isLetterPaperMoved = false;
         isScoreDisplayed = true;
-        candleLight.SetActive(true);
-        lightEffect.SetActive(true);
+        candleLight.GetComponent<Image>().enabled = true;
+        lightEffect.GetComponent<Image>().enabled = true;
         foreach(GameObject cake in cakes)  // 케이크 흑백처리
             cake.GetComponent<Image>().material = mat;
         Debug.Log("Play candleLight");
@@ -104,7 +104,7 @@ public class Ribbon : MonoBehaviour
             rank = 4;
             candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(825.7f, -166f);
             lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(825.7f, -194f);
-            cakeTopper.SetActive(true);
+            cakeTopper.GetComponent<Image>().enabled = true;
         }
         cakes[rank-1].GetComponent<Image>().material= null;
     }
@@ -123,9 +123,9 @@ public class Ribbon : MonoBehaviour
         isEnvelopeOpened = false;
         isScoreDisplayed = false;
 
-        candleLight.SetActive(true);
-        cakeTopper.SetActive(false);
-        lightEffect.SetActive(true);
+        candleLight.GetComponent<Image>().enabled= true;
+        cakeTopper.GetComponent<Image>().enabled= false;
+        lightEffect.GetComponent<Image>().enabled= true;
         envelopeTopBase.GetComponent<Image>().enabled = false;
 
         scoreText.faceColor = new Color32(176, 112, 140, 0);
