@@ -135,7 +135,7 @@ public class Ribbon : MonoBehaviour
         scoreText.faceColor = new Color32(176, 112, 140, 0);
     }
 
-    void Update() {
+    void FixedUpdate() {
         if(isScoreDisplayed) return; // 편지지 모션 두 번 실행 방지
 
         if(isEnvelopeOpened) {
