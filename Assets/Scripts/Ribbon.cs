@@ -136,19 +136,22 @@ public class Ribbon : MonoBehaviour
     }
 
     void Update() {
-        if (!isScoreDisplayed) { // 편지지 모션 두 번 실행 방지
-            if(isEnvelopeOpened) {
-                letterPaper.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
-                scoreText.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
-            }
-            if(!isLetterPaperMoved) return;
-            letterPaper.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
-            scoreText.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
-            if(!(scoreTextColorAlpha<=255 -scoreTextColorAlphaVelocity)) return;
-            scoreTextColorAlpha += scoreTextColorAlphaVelocity;
-            scoreText.faceColor = new Color32(176, 112, 140, scoreTextColorAlpha);
+        if(isScoreDisplayed) return; // 편지지 모션 두 번 실행 방지
 
+        if(isEnvelopeOpened) {
+            letterPaper.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
+            scoreText.transform.position += new Vector3(0, 10.0f * Time.deltaTime, 0);
         }
+
+        if(!isLetterPaperMoved) return; //편지지 아직 위로 안움직엿으면 리턴
+        letterPaper.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
+        scoreText.transform.position -= new Vector3(0, 10.0f * Time.deltaTime, 0);
+
+        if(!(scoreTextColorAlpha<=255 -scoreTextColorAlphaVelocity)) return;
+        scoreTextColorAlpha += scoreTextColorAlphaVelocity;
+        scoreText.faceColor = new Color32(176, 112, 140, scoreTextColorAlpha);
+
+        
         
     }
 
