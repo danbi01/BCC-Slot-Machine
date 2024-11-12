@@ -53,13 +53,13 @@ Shader "Custom/theRestOfCakeShader"
                 fixed4 frag(v2f i) : SV_Target
                 {
                     fixed4 col = tex2D(_MainTex, i.uv);
-                    col.rgb = col.rgb - 0.3; // Brightness
-                    col.rgb = AdjustContrast(col.rgb, 0.3); // Contrast
-
+                    
+                    col.rgb = col.rgb - 0.1; // Brightness
+                    col.rgb = AdjustContrast(col.rgb, 0.4); // Contrast
 
                     float grey = dot(col.rgb, float3(0.299, 0.587, 0.114));
 
-                    return fixed4(grey, grey, grey, col.a);
+                    return fixed4(grey, grey, grey, col.a*0.8);
                 }
                 ENDCG
         }        
