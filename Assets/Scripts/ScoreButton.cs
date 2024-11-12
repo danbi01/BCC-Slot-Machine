@@ -40,6 +40,7 @@ public class ScoreButton : MonoBehaviour
     public void ScoreButtonClickHandler()
     {
         isScoreButtonClicked = true;
+        GetComponent<Button>().enabled= false;
         keySound.Play(0);
         Debug.Log("Click ScoreButton");
         GameManager.ScoreHandler();
