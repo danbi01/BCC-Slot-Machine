@@ -156,7 +156,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 537.7, y: 254.7}
+  m_AnchoredPosition: {x: 533.2, y: 254.7}
   m_SizeDelta: {x: 240.67, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &13132939
@@ -181,8 +181,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 999
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7bd095672562244e78bd6c3050d24c5d, type: 2}
+  m_sharedMaterial: {fileID: 6402807409121992047, guid: 7bd095672562244e78bd6c3050d24c5d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -242,7 +242,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -8.289879, y: 0, z: -22.797318, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -2037,7 +2037,9 @@ MonoBehaviour:
   - {fileID: 1035389992}
   - {fileID: 1162252886}
   - {fileID: 433453440}
-  scoreTextColorAlpha: 0
+  scoreTextColorAlphaVelocity: 5
+  score2ndMin: 85
+  score3rdMin: 70
 --- !u!82 &1124917674
 AudioSource:
   m_ObjectHideFlags: 0
