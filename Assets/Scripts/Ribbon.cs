@@ -31,6 +31,9 @@ public class Ribbon : MonoBehaviour
     byte scoreTextColorAlpha = 0;
     public byte scoreTextColorAlphaVelocity = 5;
 
+    public int score2ndMin = 85; // 2등: 95, 90, 85
+    public int score3rdMin = 70;  // 3등: 80, 75, 70
+
     int rank = 0;
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -88,13 +91,13 @@ public class Ribbon : MonoBehaviour
             candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(138f, 131f);
             lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(138f, 103f);
         }
-        else if (GameManager.score > 85)
+        else if (GameManager.score >= score2ndMin)
         {
             rank = 2;
             candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(401.7f, 8.4f);
             lightEffect.GetComponent<RectTransform>().anchoredPosition = new Vector2(401.7f, -19.96f);
         }
-        else if (GameManager.score > 75)
+        else if (GameManager.score >= score3rdMin)
         {
             rank = 3;
             candleLight.GetComponent<RectTransform>().anchoredPosition = new Vector2(624.3f, -67.8f);
