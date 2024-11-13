@@ -31,7 +31,7 @@ public class Ribbon : MonoBehaviour
     byte scoreTextColorAlpha = 0;
     public byte scoreTextColorAlphaVelocity = 5;
 
-    public int score2ndMin = 85; // 2등: 95, 90, 85
+    public int score2ndMin = 90; // 2등: 95, 90, 85
     public int score3rdMin = 70;  // 3등: 80, 75, 70
 
     int rank = 0;
