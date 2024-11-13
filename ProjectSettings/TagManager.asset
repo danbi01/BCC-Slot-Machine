@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Round1
+  - Round2
+  - Round3
+  - Round4
+  - Round5
   layers:
   - Default
   - TransparentFX
@@ -40,4 +45,19 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: SlotMachineTop
+    uniqueID: 4230095319
+    locked: 0
+  - name: back
+    uniqueID: 2029835307
+    locked: 0
+  - name: arm
+    uniqueID: 1954482129
+    locked: 0
+  - name: face
+    uniqueID: 3430742369
+    locked: 0
+  - name: front
+    uniqueID: 4172735481
     locked: 0

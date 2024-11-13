@@ -9,10 +9,33 @@ public class StartButton : MonoBehaviour
     , IPointerEnterHandler
     , IPointerExitHandler
 {
+    AudioSource cherryBombSound;
+
+    AudioSource cherryBombBurnSound;
+
+    public Animator CherryBombAnimation;
+    public GameObject cherryBomb;
+    public Animator CherryBombBurnAnimation;
+    public GameObject cherryBombBurn;
+
     public void StartButtonClickHandler()
     {
-        SceneManager.LoadScene("Play Scene");
         Debug.Log("Click StartButton");
+        StartCoroutine(Bomb());
+    }
+
+    IEnumerator Bomb() {
+        cherryBombBurn.GetComponent<Image>().enabled = true;
+        CherryBombBurnAnimation.Play("CherryBombBurnAnimation");
+        cherryBombBurnSound.Play();
+
+        yield return new WaitForSeconds(2f);
+        cherryBomb.GetComponent<Image>().enabled = true;
+        CherryBombAnimation.Play("CherryBombAnimation");
+        cherryBombSound.Play();
+
+        yield return new WaitForSeconds(1.125f);
+        SceneManager.LoadScene("Play Scene");
     }
 
     public void OnPointerEnter(PointerEventData eventData)
@@ -29,7 +52,14 @@ public class StartButton : MonoBehaviour
 
     void Start()
     {
-        // Åõ¸íÇÑ ¹è°æ ¹«½Ã
+        // íˆ¬ëª…ë¶€ë¶„ ë¬´ì‹œ
         GetComponent<Image>().alphaHitTestMinimumThreshold = 0.001f;
+
+        cherryBombBurn.GetComponent<Image>().enabled = false;
+        cherryBomb.GetComponent<Image>().enabled = false;
+
+        AudioSource[] aSources = GetComponents<AudioSource>();
+        cherryBombBurnSound = aSources[0];
+        cherryBombSound = aSources[1];
     }
 }

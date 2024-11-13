@@ -1,31 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 public class Lever : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-    float currentPositionX; //현재 위치(x) 저장
-    float currentPositionY; //현재 위치(y) 저장
-    float currentPositionZ; //현재 위치(z) 저장
+    AudioSource clickSound;
 
-    // Start is called before the first frame update
+    float currentPositionX;
+    float currentPositionY;
+    float currentPositionZ;
+
     void Start()
     {
-        Debug.Log("Start");
+        clickSound = GetComponent<AudioSource>();
+
         currentPositionX = transform.localPosition.x;
         currentPositionY = transform.localPosition.y;
         currentPositionZ = transform.localPosition.z;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        // 
     }
 
+    //레버 클릭하면 실행되는 메소드
     public void LeverClickHandler() {
-        Debug.Log("On Click");
+        clickSound.Play();
+        StartCoroutine(InActiveLeverButton());
+    }
+
+    IEnumerator InActiveLeverButton()
+    {
+        // 레버 버튼 비활성화
+        GetComponent<Button>().interactable = false;
+        // 1초 기다림
+        yield return new WaitForSeconds(1.0f);
+        // 레버 버튼 활성화
+        GetComponent<Button>().interactable = true;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
